@@ -124,3 +124,6 @@ dmypy.json
 
 # VSCode
 .vscode/
+
+# Ignore parsed html files
+parsed.html

@@ -8,7 +8,7 @@
 import scrapy
 
 
-class GhnCrawlerItem(scrapy.Item):
+class Product(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    pass
+    product_name = scrapy.Field()
