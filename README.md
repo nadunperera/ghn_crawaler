@@ -14,3 +14,7 @@ pip install -r requirements.txt
 ## Usage
 
 Point SPLASH_URL in settings.py to your Splash server.
+
+```bash
+scrapy crawl crawler_name
+```
