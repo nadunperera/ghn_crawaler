@@ -21,3 +21,9 @@ class MySpider(scrapy.Spider):
         with open(_file, "wb") as f:
             f.write(response.body)
 
+        products = response.xpath(
+            "//wow-shelf-product-tile"
+        )
+        print("PRODUCT LENGTH: {}".format(len(products)))
+        for product in products:
+            yield {"product": product.xpath(".//h3/a/text()").extract_first()}
