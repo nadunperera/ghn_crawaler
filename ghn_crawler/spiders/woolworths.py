@@ -17,13 +17,15 @@ class MySpider(scrapy.Spider):
         #     item['product_name'] = product.css('shelfProductTile-description::text').extract_first()
         #     yield item
 
-        _file = "parsed.html"
-        with open(_file, "wb") as f:
-            f.write(response.body)
+        products = response.xpath("//wow-shelf-product-tile")
 
-        products = response.xpath(
-            "//wow-shelf-product-tile"
-        )
-        print("PRODUCT LENGTH: {}".format(len(products)))
         for product in products:
-            yield {"product": product.xpath(".//h3/a/text()").extract_first()}
+            yield {
+                "product": product.xpath(".//h3/a/text()").extract_first(),
+                "price_dollars": product.xpath(
+                    ".//span[@class='price-dollars']/text()"
+                ).extract_first(),
+                "price_cents": product.xpath(
+                    ".//span[@class='price-cents']/text()"
+                ).extract_first(),
+            }
